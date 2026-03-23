@@ -1,11 +1,10 @@
 import fastf1
 import pandas as pd
-
-from pathlib import path
+from pathlib import Path
 
 def setup_cache( path: str ) -> None: 
 
-    folder = Path (path)
+    folder = Path(path)
     folder.mkdir(parents = True, exist_ok = True)
     fastf1.Cache.enable_cache(folder)
 
@@ -20,14 +19,14 @@ def load_session( year: int, gp: str, session_type: str) -> fastf1.core.Session:
 def get_all_drivers(session: fastf1.core.Session ) -> list[str]:
     driver = session.laps["Driver"]
     unici = driver.unique()
-    return sorted(unici.to_list())
+    return sorted(unici.tolist())
 
 def get_driver_laps(session: fastf1.core.Session, driver_code: str) -> pd.DataFrame:
-    driver_lap = session.laps.pick_driver(driver_code)
+    driver_lap = session.laps.pick_drivers(driver_code)
     return driver_lap
     
 def get_driver_best_lap (session: fastf1.core.Session, driver_code: str) -> pd.Series:
-    best_driver_lap = session.laps.pick_driver(driver_code).pick_fastest()
+    best_driver_lap = session.laps.pick_drivers(driver_code).pick_fastest()
     return best_driver_lap
 
 
