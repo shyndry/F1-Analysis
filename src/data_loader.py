@@ -1,4 +1,5 @@
 import fastf1
+from fastf1.core import DriverResult
 import pandas as pd
 
 from pathlib import path
@@ -17,4 +18,8 @@ def load_session( year: int, gp: str, session_type: str) -> fastf1.core.Session:
     session.load()
     return session
 
-
+def get_all_drivers(session: fastf1.core.Session ) -> list[str]:
+    driver = session.laps["Driver"]
+    unici = driver.unique()
+    return sorted(unici.to_list())
+    
