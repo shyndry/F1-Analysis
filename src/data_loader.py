@@ -12,3 +12,9 @@ def setup_cache( path: str ) -> None:
     print(f" La cache è stata attivata dentro: {path}, correttamente")
 
 
+def load_session( year: int, gp: str, session_type: str) -> fastf1.core.Session: 
+    session = fastf1.get_session(year, gp, session_type)
+    session.load()
+    return session
+
+
