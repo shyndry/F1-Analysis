@@ -1,6 +1,3 @@
-from asyncio.windows_events import NULL
-from nt import mkdir
-from ntpath import exists
 import fastf1
 import pandas as pd
 
